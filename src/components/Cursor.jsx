@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
-const CLICKABLE = 'a, button, label, [role="button"]'
+const CLICKABLE = 'a, button, label, [role="button"], [role="slider"]'
 const TEXT_FIELD = 'input, textarea, select'
 
 // The S stays close to the pointer so clicks feel exact; the brackets glide behind it

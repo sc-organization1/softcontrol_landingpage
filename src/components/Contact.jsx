@@ -73,7 +73,7 @@ function validate(form, t) {
 
 export function Contact({ selected, toggle }) {
   const { t } = useI18n()
-  const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', message: '', company_site: '' })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [toast, setToast] = useState(null)
@@ -217,6 +217,14 @@ export function Contact({ selected, toggle }) {
                     />
                     <span className="self-end font-mono text-[11px] tabular-nums text-on-band-2">{form.message.length} / {MESSAGE_MAX}</span>
                   </Field>
+
+                  {/* Spam trap: hidden from visitors, only bots fill it in */}
+                  <div aria-hidden="true" className="absolute left-[-9999px] size-px overflow-hidden">
+                    <input
+                      type="text" name="company_site" tabIndex={-1} autoComplete="off"
+                      value={form.company_site} onChange={(e) => set('company_site')(e.target.value)}
+                    />
+                  </div>
 
                   <div className="col-span-full mt-2 flex flex-wrap items-center justify-between gap-4">
                     <small className="max-w-[36ch] text-[13px] text-on-band-2">

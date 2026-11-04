@@ -28,6 +28,19 @@ export const MoonIcon = () => <HeaderIcon><path d="M15.5 10.6A6.8 6.8 0 0 1 7.4 
 export const ExpandIcon = () => <HeaderIcon><path d="M2 6.5V2h4.5M11.5 2H16v4.5M16 11.5V16h-4.5M6.5 16H2v-4.5" /></HeaderIcon>
 export const CompressIcon = () => <HeaderIcon><path d="M6.5 2v4.5H2M16 6.5h-4.5V2M11.5 16v-4.5H16M2 11.5h4.5V16" /></HeaderIcon>
 
+/** Video player icons, sized by className */
+const PlayerIcon = ({ className, solid = false, children }) => (
+  <svg viewBox="0 0 24 24" fill={solid ? 'currentColor' : 'none'} stroke={solid ? 'none' : 'currentColor'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    {children}
+  </svg>
+)
+
+export const PlayIcon = ({ className }) => <PlayerIcon solid className={className}><path d="M7 4.6v14.8a1 1 0 0 0 1.5.86l12.3-7.4a1 1 0 0 0 0-1.72L8.5 3.74A1 1 0 0 0 7 4.6Z" /></PlayerIcon>
+export const PauseIcon = ({ className }) => <PlayerIcon solid className={className}><rect x="5.5" y="4" width="4.6" height="16" rx="1.2" /><rect x="13.9" y="4" width="4.6" height="16" rx="1.2" /></PlayerIcon>
+export const ReplayIcon = ({ className }) => <PlayerIcon className={className}><path d="M4 12a8 8 0 1 0 2.6-5.9L4 8.5M4 4v4.5h4.5" /></PlayerIcon>
+export const VolumeIcon = ({ className }) => <PlayerIcon className={className}><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4ZM15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" /></PlayerIcon>
+export const VolumeOffIcon = ({ className }) => <PlayerIcon className={className}><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4ZM16 9.5l5 5M21 9.5l-5 5" /></PlayerIcon>
+
 export const Arrow = ({ className = '' }) => (
   <span aria-hidden="true" className={`inline-block transition-transform duration-300 group-hover:translate-x-1 ${className}`}>→</span>
 )

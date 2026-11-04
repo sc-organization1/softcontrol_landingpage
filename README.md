@@ -44,14 +44,14 @@ The service selection is shared: switches in the hero panel, "Order this" on ser
 
 ## Contact form
 
-The form sends JSON to the URL in `VITE_FORM_ENDPOINT` (see `.env.example` and `src/lib/sendRequest.js`).
-Without it, the form works in demo mode and only logs the request to the console.
+The form posts JSON to `/api/contact` (`src/lib/sendRequest.js`). That function (`api/contact.js`) checks the request and forwards it to Telegram.
+
+Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in `.env` (see `.env.example`) for `npm run dev`, and in the host's environment variables for production. The bot must be able to post in that chat; in a private chat, the person must have started the bot first.
 
 Fields format themselves while typing (`src/lib/format.js`). The phone field holds the Uzbek number after a fixed `+998`, and the request sends it as `+998 90 123 45 67`.
 
-Good option: a small serverless function (Vercel / Netlify) that receives the JSON and forwards it to your Telegram group with the Bot API.
-Keep the bot token in the server's environment variables, never in this frontend code.
+Never put the bot token in frontend code or in a `VITE_` variable: anyone can read those.
 
 ## Deploy
 
-`npm run build` and upload `dist/` to any static host (Vercel, Netlify, your own server with nginx).
+Deploy to Vercel, which builds the site and runs `api/contact.js` as a function. On a purely static host the site loads, but the contact form fails without that function.

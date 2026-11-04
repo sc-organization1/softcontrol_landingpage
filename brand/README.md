@@ -8,4 +8,4 @@ Fonts: Bodoni Moda (headings, wordmark) · Manrope (text) · IBM Plex Mono (labe
 - app-icons/ — 1024 master (rounded, full-bleed for iOS, maskable for Android), iOS and Android launcher sizes.
 - The website itself is the React project in the parent folder.
 
-The contact form needs a backend (e.g. an API route, Telegram bot or form service) to receive requests.
+The contact form sends requests to Telegram through `api/contact.js` in the parent folder.

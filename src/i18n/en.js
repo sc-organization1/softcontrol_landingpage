@@ -58,6 +58,18 @@ export default {
   'val.3t': 'Clear results',
   'val.3p': 'An agreed scope, regular demos and a finished product handed over with instructions for your staff.',
 
+  'video.label': 'Video about SoftControl',
+  'video.title': 'Meet SoftControl',
+  'video.play': 'Play video',
+  'video.pause': 'Pause',
+  'video.replay': 'Watch again',
+  'video.mute': 'Mute',
+  'video.unmute': 'Unmute',
+  'video.volume': 'Volume',
+  'video.seek': 'Video position',
+  'video.error': 'The video could not be loaded.',
+  'video.retry': 'Try again',
+
   'svc.eyebrow': 'Services',
   'svc.title': 'Seven services. One team.',
   'svc.sub': 'Choose one service or combine several: for example, a corporate website with an online store, a Telegram bot and a CRM that receives every order.',

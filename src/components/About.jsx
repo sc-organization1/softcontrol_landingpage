@@ -1,4 +1,5 @@
 import { useI18n } from '../i18n'
+import { AboutVideo } from './AboutVideo'
 import { Reveal, SectionHead } from './Reveal'
 
 export function About() {
@@ -21,6 +22,10 @@ export function About() {
             ))}
           </div>
         </div>
+
+        <Reveal className="mt-[72px] max-[820px]:mt-12">
+          <AboutVideo />
+        </Reveal>
 
         <div className="mt-[72px] grid border-t border-ink min-[821px]:grid-cols-3">
           {[1, 2, 3].map((n, i) => (

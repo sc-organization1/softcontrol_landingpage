@@ -257,6 +257,20 @@
 html.has-cursor, html.has-cursor * { cursor: none !important; }
 html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
 
+/* Video player. The logo cursor lives outside the player, so full screen needs the system cursor back. */
+.vp:fullscreen { aspect-ratio: auto; border-radius: 0; background: #000; }
+html.has-cursor .vp:fullscreen, html.has-cursor .vp:fullscreen * { cursor: default !important; }
+html.has-cursor .vp:fullscreen button, html.has-cursor .vp:fullscreen [role="slider"] { cursor: pointer !important; }
+html.has-cursor .vp:fullscreen[data-idle], html.has-cursor .vp:fullscreen[data-idle] * { cursor: none !important; }
+.vp video { cursor: pointer; }
+.vp-layer { transition: opacity 0.25s ease; }
+.vp-fill { transform: scaleX(var(--fill)); }
+.vp-thumb { left: calc(var(--progress, 0) * 100%); }
+.vp-veil { animation: vp-veil 0.45s ease-out forwards; }
+@keyframes vp-veil { from { opacity: 1; } to { opacity: 0; } }
+.vp-spinner { animation: vp-spin 0.8s linear infinite; }
+@keyframes vp-spin { to { transform: rotate(360deg); } }
+
 /* Browser autofill keeps the form's colors */
 input:-webkit-autofill {
   -webkit-text-fill-color: var(--on-band);
@@ -281,5 +295,6 @@ input:-webkit-autofill {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee-track, .caret, .drift i:nth-child(n) { animation: none; }
+  .marquee-track, .caret, .drift i:nth-child(n), .vp-veil { animation: none; }
+  .vp-veil { opacity: 0; }
 }

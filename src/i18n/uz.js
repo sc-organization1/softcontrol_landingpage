@@ -58,6 +58,18 @@ export default {
   'val.3t': 'Aniq natija',
   'val.3p': 'Kelishilgan ish hajmi, muntazam namoyishlar va xodimlaringiz uchun yo‘riqnoma bilan topshirilgan tayyor mahsulot.',
 
+  'video.label': 'SoftControl haqida video',
+  'video.title': 'SoftControl bilan tanishing',
+  'video.play': 'Videoni ijro etish',
+  'video.pause': 'Pauza',
+  'video.replay': 'Qayta ko‘rish',
+  'video.mute': 'Ovozni o‘chirish',
+  'video.unmute': 'Ovozni yoqish',
+  'video.volume': 'Ovoz balandligi',
+  'video.seek': 'Video vaqti',
+  'video.error': 'Videoni yuklab bo‘lmadi.',
+  'video.retry': 'Qayta urinish',
+
   'svc.eyebrow': 'Xizmatlar',
   'svc.title': 'Yetti xizmat. Bitta jamoa.',
   'svc.sub': 'Bitta xizmatni tanlang yoki bir nechtasini birlashtiring: masalan, onlayn do‘konli korporativ sayt, Telegram bot va har bir buyurtmani qabul qiladigan CRM.',
