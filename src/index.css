@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   SoftControl design tokens
+   Classic letterhead: stone paper, navy ink, brass hairlines.
+   Light values on :root, dark values follow the OS (or data-theme).
+---------------------------------------------------------------- */
+/* Registered as colors so the theme switch can animate the tokens themselves */
+@property --paper { syntax: "<color>"; inherits: true; initial-value: #efede7; }
+@property --paper-2 { syntax: "<color>"; inherits: true; initial-value: #e7e3da; }
+@property --card { syntax: "<color>"; inherits: true; initial-value: #f6f4ef; }
+@property --ink { syntax: "<color>"; inherits: true; initial-value: #16233b; }
+@property --ink-2 { syntax: "<color>"; inherits: true; initial-value: #3b475b; }
+@property --muted { syntax: "<color>"; inherits: true; initial-value: #6c7180; }
+@property --brass { syntax: "<color>"; inherits: true; initial-value: #8f7240; }
+@property --brass-soft { syntax: "<color>"; inherits: true; initial-value: #a88a55; }
+@property --line { syntax: "<color>"; inherits: true; initial-value: rgba(22, 35, 59, 0.14); }
+@property --band { syntax: "<color>"; inherits: true; initial-value: #16233b; }
+@property --band-2 { syntax: "<color>"; inherits: true; initial-value: #1d2c47; }
+@property --on-band { syntax: "<color>"; inherits: true; initial-value: #eeebe3; }
+@property --on-band-2 { syntax: "<color>"; inherits: true; initial-value: #b8b9bd; }
+@property --band-line { syntax: "<color>"; inherits: true; initial-value: rgba(238, 235, 227, 0.14); }
+@property --ok { syntax: "<color>"; inherits: true; initial-value: #3f6b4e; }
+@property --glow-warm { syntax: "<color>"; inherits: true; initial-value: rgba(168, 138, 85, 0.24); }
+@property --glow-cool { syntax: "<color>"; inherits: true; initial-value: rgba(44, 74, 128, 0.15); }
+
+:root {
+  --paper: #efede7;
+  --paper-2: #e7e3da;
+  --card: #f6f4ef;
+  --ink: #16233b;
+  --ink-2: #3b475b;
+  --muted: #6c7180;
+  --brass: #8f7240;
+  --brass-soft: #a88a55;
+  --line: rgba(22, 35, 59, 0.14);
+  --band: #16233b;
+  --band-2: #1d2c47;
+  --on-band: #eeebe3;
+  --on-band-2: #b8b9bd;
+  --band-line: rgba(238, 235, 227, 0.14);
+  --ok: #3f6b4e;
+  --glow-warm: rgba(168, 138, 85, 0.24);
+  --glow-cool: rgba(44, 74, 128, 0.15);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1727;
+    --paper-2: #141e31;
+    --card: #16213a;
+    --ink: #ece8df;
+    --ink-2: #c4c6cd;
+    --muted: #8e94a2;
+    --brass: #c6a66d;
+    --brass-soft: #b39159;
+    --line: rgba(236, 232, 223, 0.12);
+    --band: #0a101c;
+    --band-2: #121b2d;
+    --on-band: #ece8df;
+    --on-band-2: #a9acb4;
+    --band-line: rgba(236, 232, 223, 0.12);
+    --ok: #86b596;
+    --glow-warm: rgba(198, 166, 109, 0.13);
+    --glow-cool: rgba(84, 122, 190, 0.17);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1727;
+  --paper-2: #141e31;
+  --card: #16213a;
+  --ink: #ece8df;
+  --ink-2: #c4c6cd;
+  --muted: #8e94a2;
+  --brass: #c6a66d;
+  --brass-soft: #b39159;
+  --line: rgba(236, 232, 223, 0.12);
+  --band: #0a101c;
+  --band-2: #121b2d;
+  --on-band: #ece8df;
+  --on-band-2: #a9acb4;
+  --band-line: rgba(236, 232, 223, 0.12);
+  --ok: #86b596;
+  --glow-warm: rgba(198, 166, 109, 0.13);
+  --glow-cool: rgba(84, 122, 190, 0.17);
+  color-scheme: dark;
+}
+
+/* Expose the tokens to Tailwind: bg-paper, text-ink, border-line, font-display ... */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-brass: var(--brass);
+  --color-brass-soft: var(--brass-soft);
+  --color-line: var(--line);
+  --color-band: var(--band);
+  --color-band-2: var(--band-2);
+  --color-on-band: var(--on-band);
+  --color-on-band-2: var(--on-band-2);
+  --color-band-line: var(--band-line);
+  --color-ok: var(--ok);
+}
+@theme {
+  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  h1, h2, h3 { @apply font-display font-medium; text-wrap: balance; letter-spacing: -0.005em; }
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+  ::selection { background: var(--brass-soft); color: #14203a; }
+}
+
+/* Page container with safe-area side gutters */
+@utility wrap {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  @media (max-width: 480px) {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Small mono label with a brass rule in front */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  &::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+}
+
+/* Buttons */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 14px var(--font-body);
+  padding: 13px 22px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s, border-color 0.35s, transform 0.2s;
+  &:active { transform: translateY(1px); }
+  &:disabled { opacity: 0.6; cursor: progress; }
+  /* fill that slides away on hover */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover::before { transform: scaleX(0); }
+}
+@utility btn-primary {
+  @apply btn;
+  color: var(--paper);
+  border-color: var(--ink);
+  &::before { background: var(--ink); }
+  &:hover { color: var(--ink); }
+}
+@utility btn-brass {
+  @apply btn;
+  color: #14203a;
+  border-color: var(--brass-soft);
+  &::before { background: var(--brass-soft); }
+  &:hover { color: var(--on-band); }
+}
+@utility btn-ghost {
+  @apply btn;
+  color: var(--ink);
+  border-color: var(--line);
+  &::before { background: var(--ink); transform: scaleX(0); transform-origin: left; }
+  &:hover { color: var(--paper); border-color: var(--ink); }
+  &:hover::before { transform: scaleX(1); }
+}
+
+/* Endless ticker under the hero */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Cursor spotlight for service cards (position set from JS) */
+.spotlight {
+  background-image: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--brass-soft) 14%, transparent), transparent 60%);
+}
+
+/* Dim shapes that drift forever: two soft glows, one more on the far side, a hairline ring and a diamond.
+   Only transforms animate, so the browser can run them without repainting the page. */
+.drift { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.drift-band { --glow-warm: rgba(198, 166, 109, 0.15); --glow-cool: rgba(90, 125, 190, 0.2); z-index: -1; }
+.drift i { position: absolute; display: block; will-change: transform; }
+.drift i:nth-child(-n+3) { border-radius: 50%; }
+.drift i:nth-child(1) {
+  left: -14%; top: -18%; width: 62vmax; height: 62vmax;
+  background: radial-gradient(closest-side, var(--glow-warm), transparent);
+  animation: drift-a 36s ease-in-out infinite alternate;
+}
+.drift i:nth-child(2) {
+  right: -18%; top: 22%; width: 56vmax; height: 56vmax;
+  background: radial-gradient(closest-side, var(--glow-cool), transparent);
+  animation: drift-b 44s ease-in-out infinite alternate;
+}
+.drift i:nth-child(3) {
+  left: 18%; bottom: -30%; width: 48vmax; height: 48vmax;
+  background: radial-gradient(closest-side, var(--glow-warm), transparent);
+  animation: drift-c 52s ease-in-out infinite alternate;
+}
+.drift i:nth-child(4) {
+  right: 9%; top: 12%; width: 22vmin; height: 22vmin;
+  border: 1px solid var(--brass-soft); border-radius: 50%; opacity: 0.2;
+  animation: drift-d 40s ease-in-out infinite alternate;
+}
+.drift i:nth-child(5) {
+  left: 6%; bottom: 14%; width: 13vmin; height: 13vmin;
+  border: 1px solid var(--brass-soft); opacity: 0.2;
+  animation: drift-e 60s linear infinite;
+}
+@keyframes drift-a { to { transform: translate3d(24vw, 14vh, 0) scale(1.15); } }
+@keyframes drift-b { to { transform: translate3d(-22vw, -16vh, 0) scale(0.9); } }
+@keyframes drift-c { to { transform: translate3d(20vw, -18vh, 0) scale(1.2); } }
+@keyframes drift-d { to { transform: translate3d(-9vw, 18vh, 0) scale(1.25); } }
+@keyframes drift-e { from { transform: rotate(45deg); } to { transform: rotate(405deg); } }
+
+/* Brass edge that follows the mouse around a service card (position set from JS) */
+.card-glow {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), var(--brass-soft), transparent 70%);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+/* The logo cursor replaces the system cursor everywhere except text fields */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
+
+/* Browser autofill keeps the form's colors */
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--on-band);
+  caret-color: var(--on-band);
+  transition: background-color 9999s;
+}
+
+/* Theme switch (class set for a moment by useTheme). Only the tokens animate, once, on the root, so every
+   element changes color in step. Elements' own transitions pause, or they would trail behind the tokens. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-fade {
+    transition-property: --paper, --paper-2, --card, --ink, --ink-2, --muted, --brass, --brass-soft, --line, --band, --band-2, --on-band, --on-band-2, --band-line, --ok, --glow-warm, --glow-cool;
+    transition-duration: 0.45s;
+    transition-timing-function: ease-in-out;
+  }
+  html.theme-fade *, html.theme-fade *::before, html.theme-fade *::after { transition: none !important; }
+}
+
+/* Blinking caret in the hero headline */
+@keyframes blink { 50% { opacity: 0; } }
+.caret { animation: blink 1.05s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track, .caret, .drift i:nth-child(n) { animation: none; }
+}
